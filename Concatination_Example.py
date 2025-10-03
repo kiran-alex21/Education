@@ -1,0 +1,5 @@
+name = input("What is your name?")
+print("Concatinated (+): Hello" + name)
+print("Comma Seperated(,): Hello", name)
+print("Concatinated (+) with space added: Hello " + name)
+print("Comma Seperated(,) with space added: Hello ", name)
