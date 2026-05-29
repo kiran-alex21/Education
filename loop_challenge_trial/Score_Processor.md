@@ -22,6 +22,6 @@ Alter your output to display the:
 ## Extension 2
 
 The client now wants the program to run with a GUI.
-Create a list of requirements for the GUI
-Make a basic starter file (like the ones in this task)
-Use Tkinter to build your GUI
+    - Create a list of requirements for the GUI
+    - Make a basic starter file (like the ones in this task)
+    - Use Tkinter to build your GUI
