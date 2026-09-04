@@ -26,12 +26,19 @@ def run_quiz(questions):
     count = 1
     # Parses each question one at a time
     for q in questions:
+        entry = False
         print(f"Question {count}: {q['question']}?")
         for idx, option in enumerate(q['options']):
             print(f"Option {idx+1}: {option}")
         count = count + 1
         # Collects answers and checks correctness.
-        choice = int(input("Your Answer (1-4): "))
+        while entry == False:
+            try:
+                choice = int(input("Your Answer (1-4): "))
+                entry = True
+            except Exception as e:
+                print(f"There is an Error.\n{e}")
+
         answer = int(q['answer'])
         if choice == answer:
             score += 1
@@ -55,17 +62,23 @@ def save_score(score, filename):
 
 
 def read_scores(filename):
+    savedscores = False
     # Reads and displays scores.
     print("Score's So Far")
     # Open file
     with open(filename, newline='') as csvfile:
         reader = csv.reader(csvfile)
+        next(reader)
         reader = sorted(reader, key = lambda row: row[1], reverse = True) ## sorting into score order
         # Printing each username + score
         for row in reader:
             name = row[0]
             score = row[1]
             print(name + ":", score)
+            savedscores = True
+
+        if not savedscores:
+            print("No Scores Saved")
 
 
 def main():
@@ -75,18 +88,16 @@ def main():
         print("Welcome to the Computer Science Quiz \nDo you want to: \nA: Take The Quiz \nB: See The Scores \nC: Exit")
         # Takes a choice from the user
         choice = input("")
-        choice =  choice.strip()
+        choice =  choice.strip().upper()
         # Choose action depending on choice
-        if choice == "C":
+        if choice == "C": ## exit quiz
             run = False
-            exit
         elif choice == "B": ## view scores
             read_scores('Education\\quiz_app\\score.csv')
             # Allows you to leave after viewing the scores
             leave = input("Do you want to exit? [Y]Yes [N]No ")
-            if leave == "Y":
+            if leave.strip().upper() == "Y":
                 run = False
-                exit
             else:
                 continue
         elif choice == "A": ## play quiz
@@ -95,9 +106,8 @@ def main():
             save_score(score, 'Education\\quiz_app\\score.csv')
             # Allows you to leave if you save your score
             leave = input("Do you want to exit? [Y]Yes [N]No ")
-            if leave == "Y":
+            if leave.strip().upper() == "Y": ## exit quiz
                 run = False
-                exit
             else:
                 continue
 
