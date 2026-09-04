@@ -6,12 +6,11 @@ score_info = {}
 
 def score_input():
     ## Take an input of scores.
-    scorelist = input("Enter a list of scores, sperated by comma's (,): ")
+    raw_scores = input("Enter a list of scores, sperated by comma's (,): ")
     # split into list of speperate scores
-    scorelist = scorelist.split(',')
+    scorelist = raw_scores.split(',')
     # convert from strings to floats
-    for i in range(len(scorelist)):
-        scorelist[i] = float(scorelist[i])
+    scorelist = [float(score) for score in scorelist]
     # output scorelist
     return scorelist
 

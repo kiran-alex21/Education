@@ -24,7 +24,7 @@ def print_scores(score_info):
     ## Display the dictionary score_info in an appropriate way
 
 def main():
-    ## combines your functions as one here
+    ## combines the functions to run the program
     print_scores(compute_scores(score_input()))
 
 # runs the program
